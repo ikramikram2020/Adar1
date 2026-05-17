@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+
+/* === إعدادات الفوتر === */
+.adar-footer {
+  /*background: linear-gradient(to right, #09141f, #0c1f31, #09141f);*/
+  background: rgba(22, 28, 36, 1);
+  color: #a0a0a0;
+  padding-top: 70px;
+  font-family: 'Tajawal', sans-serif;
+  position: relative;
+  direction: rtl;
+}
+
+/* خط ذهبي علوي */
+.adar-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #e3c08d, transparent);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px 20px;
+}
+
+/* === الشبكة المسؤولة عن جعل الفوتر أفقي (4 أعمدة) === */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+  gap: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* === العناوين الواضحة === */
+.section-title {
+  color:  white !important; /* أبيض ناصع ليكون واضحاً جداً */
+  font-size: 25px !important;
+  font-weight: 800; /* خط عريض جداً */
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 12px;
+  display: inline-block;
+}
+
+/* الخط الذهبي تحت العنوان لزيادة الوضوح */
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 3px; /* سُمك الخط */
+  background-color: #e3c08d;
+  border-radius: 2px;
+}
+
+/* === باقي التنسيقات === */
+.footer-logo-link {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.footer-logo {
+  height: 50px;
+  width: auto;
+  filter: brightness(1.1);
+}
+
+.footer-vision {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #8a8a8a;
+  margin-bottom: 25px;
+}
+
+.footer-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+  color: #ccc;
+}
+
+.contact-icon {
+  color: #e3c08d;
+  font-size: 14px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 12px;
+}
+
+.social-link {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0a0a0;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  background-color: #e3c08d;
+  color: #161c24;
+  border-color: #e3c08d;
+  transform: translateY(-3px);
+}
+
+.links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+   
+}
+ 
+
+.footer-link {
+  color: #8a8a8a;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.footer-link:hover {
+  color: #e3c08d;
+  padding-right: 8px;
+}
+
+.newsletter-desc {
+  font-size: 14px;
+  color: #8a8a8a;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.newsletter-input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.newsletter-input::placeholder {
+  color: #666;
+}
+
+.newsletter-input:focus {
+  border-color: #e3c08d;
+}
+
+.newsletter-btn {
+  padding: 12px;
+  background-color: #e3c08d;
+  color: #161c24;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.newsletter-btn:hover {
+  background-color: #d4ae7a;
+}
+
+.footer-bottom-bar {
+  display: flex;
+  flex-direction: column; /* ترتيب عمودي */
+  align-items: center; /* توسيط أفقي */
+  justify-content: center; /* توسيط عمودي */
+  text-align: center; /* توسيط النص */
+  padding-top: 30px;
+  font-size: 13px;
+  color: #666; /* لون رمادي متوسط ليكون واضحاً */
+  gap: 8px; /* مسافة بين السطرين */
+}
+
+/* === التجاوب للشاشات الصغيرة === */
+@media (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .adar-footer {
+    padding-top: 50px;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .footer-contact-info {
+    align-items: center;
+  }
+  .footer-socials {
+    justify-content: center;
+  }
+  .section-title::after {
+    right: 50%;
+    transform: translateX(50%);
+  }
+  .footer-link {
+    justify-content: center;
+  }
+  .footer-link:hover {
+    padding-right: 0;
+  }
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}

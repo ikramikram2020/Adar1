@@ -1,0 +1,71 @@
+import React, { useEffect, useRef, useState } from "react";
+import { AiOutlineCloudUpload } from "react-icons/ai";
+import "./UploadImage.css";
+import { Button, Group } from "@mantine/core";
+import { useTranslation } from "react-i18next"; // استدعاء الترجمة
+
+const UploadImage = ({
+  propertyDetails,
+  setPropertyDetails,
+  nextStep,
+  prevStep,
+}) => {
+  const { t } = useTranslation(); // تعريف الترجمة
+  const [imageURL, setImageURL] = useState(propertyDetails.image);
+  const cloudinaryRef = useRef();
+  const widgetRef = useRef();
+  
+  const handleNext = () => {
+    setPropertyDetails((prev) => ({ ...prev, image: imageURL }));
+    nextStep();
+  };
+
+  useEffect(() => {
+    cloudinaryRef.current = window.cloudinary;
+    widgetRef.current = cloudinaryRef.current.createUploadWidget(
+      {
+        cloudName: "dcdhklrjc",
+        uploadPreset: "vx0dyjgc",
+        maxFiles: 1,
+      },
+      (err, result) => {
+        if (result.event === "success") {
+          setImageURL(result.info.secure_url);
+        }
+      }
+    );
+  }, []);
+
+  return (
+    <div className="flexColCenter uploadWrapper">
+      {!imageURL ? (
+        <div
+          className="flexColCenter uploadZone"
+          onClick={() => widgetRef.current?.open()}
+        >
+          <AiOutlineCloudUpload size={50} color="grey" />
+          <span>{t('upload_img_text')}</span> {/* ترجمة */}
+        </div>
+      ) : (
+        <div
+          className="uploadedImage"
+          onClick={() => widgetRef.current?.open()}
+        >
+          {/* alt فارغ لأن الصورة من رفع المستخدم */}
+          <img src={imageURL} alt="" /> 
+        </div>
+      )}
+
+      <Group position="center" mt={"xl"}>
+        <Button variant="default" onClick={prevStep}>
+          {t('upload_img_back')} {/* ترجمة */}
+        </Button>
+        <Button onClick={handleNext} disabled={!imageURL}>
+          {t('upload_img_next')} {/* ترجمة */}
+        </Button>
+      </Group>
+    </div>
+  );
+};
+
+export default UploadImage;

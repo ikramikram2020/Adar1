@@ -1,0 +1,815 @@
+/* ==========================================
+   1. هيكل الهيدر الأساسي
+   ========================================== */
+.h-wrapper {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3.5rem;
+  z-index: 9;
+  background: rgba(22, 28, 36, 1);
+  border-bottom: 1px solid rgba(238, 194, 92, 0.1);
+  direction: rtl;
+  box-sizing: border-box;
+}
+
+.h-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0px 30px;
+  box-sizing: border-box;
+  height: 100%;
+  flex-wrap: nowrap; /* <-- لمنع انزلاق أي عنصر للسطر الثاني */
+  gap: 20px; /* <-- مسافة آمنة بين الأقسام */
+}
+
+.h-container img {
+  padding: 8px 2px;
+}
+
+/* ==========================================
+   2. الشعار (Logo)
+   ========================================== */
+.logo-text {
+  font-weight: bold;
+  font-size: 10rem;
+  color: white;
+}
+
+.logo-text span {
+  color: #f1c994;
+}
+
+/* ==========================================
+   3. القائمة الرئيسية (Desktop Navigation)
+   ========================================== */
+.h-menu {
+  display: flex;          
+  align-items: center;    
+  gap: 2.5rem;
+  color: white;
+  flex: 1; /* <-- لجعل القائمة تأخذ كل المساحة المتاحة بين اللوقو والأزرار */
+  justify-content: center; 
+}
+
+.h-menu a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  font-family: 'Tajawal', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.h-menu a.active,
+.h-menu a:hover {
+  color: #f1c994;
+}
+
+.nav-dropdown-btn.active {
+  color: #f1c994;
+}
+
+/* ==========================================
+   4. القوائم المنسدلة (Desktop Dropdowns)
+   ========================================== */
+.nav-item-wrapper {
+  position: relative;
+}
+
+.nav-item-wrapper:hover {
+  color: #f1c994;
+}
+
+.nav-dropdown-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 0;
+}
+
+.nav-dropdown-btn:hover {
+  color: #f1c994;
+}
+
+.nav-dropdown-content {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 12px;
+  background: rgba(22, 28, 36, 0.95);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-top: 1px solid rgba(212, 168, 75, 0.2);
+  border-radius: 16px;
+  padding: 8px 0;
+  min-width: 240px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.98);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+}
+
+.nav-dropdown-content.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.nav-dropdown-content a {
+  display: flex;
+  align-items: center;
+  padding: 11px 20px;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.nav-dropdown-content a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  padding-right: 24px;
+}
+
+/* ==========================================
+   5. حاوية الأزرار الجديدة (الديسكتوب)
+   ========================================== */
+.h-actions-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+   flex-shrink: 0;
+}
+
+/* ==========================================
+   6. زر تبديل اللغة الاحترافي
+   ========================================== */
+.h-lang-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background-color: transparent;
+  border: 1px solid rgba(241, 201, 148, 0.25);
+  border-radius: 20px;
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.h-lang-btn:hover {
+  background-color: rgba(241, 201, 148, 0.1);
+  border-color: rgba(241, 201, 148, 0.5);
+  color: white;
+}
+
+.lang-icon {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+.lang-code {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+
+/* ==========================================
+   7. أزرار تسجيل الدخول والاشتراك (موحدة)
+   ========================================== */
+.h-login-text {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.9);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Tajawal', sans-serif;
+  padding: 8px 12px;
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.h-login-text:hover {
+  color: #f1c994;
+  background: rgba(241, 201, 148, 0.05);
+}
+
+.h-subscribe-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1c994;
+  color: #161c24;
+  border: 2px solid #f1c994;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-family: 'Tajawal', sans-serif;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.h-subscribe-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, #c9963a, #f1c991);
+  border-radius: 50px;
+  transition: width 0.4s ease;
+  z-index: -1;
+}
+
+.h-subscribe-btn:hover::before {
+  width: 100%;
+}
+
+.h-subscribe-btn:hover {
+  color: #161c24;
+  border-color: #f1c994;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(241, 201, 145, 0.3);
+}
+
+.h-subscribe-btn svg {
+  font-size: 1rem;
+  transition: transform 0.4s ease;
+}
+
+.h-subscribe-btn:hover svg {
+  transform: rotate(72deg);
+}
+
+/* زر الاشتراك الشفاف (يظهر بعد تسجيل الدخول) */
+.h-btn-ghost {
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(241, 201, 148, 0.25);
+  box-shadow: none;
+  padding: 7px 14px;
+  font-size: 0.85rem;
+}
+
+.h-btn-ghost::before {
+  display: none;
+}
+
+.h-btn-ghost:hover {
+  background-color: rgba(241, 201, 148, 0.1);
+  transform: none;
+  box-shadow: none;
+  color: #f1c994;
+}
+
+.h-btn-ghost:hover svg {
+  transform: none;
+}
+
+/* ==========================================
+   8. قائمة المستخدم المنسدلة (Profile)
+   ========================================== */
+.h-profile-wrapper {
+  position: relative;
+}
+
+.h-profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 5px;
+  background-color: rgba(241, 201, 148, 0.08);
+  border: 1px solid rgba(241, 201, 148, 0.2);
+  border-radius: 25px;
+  color: #ce9c56;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.h-profile-btn:hover {
+  background-color: rgba(241, 201, 148, 0.15);
+  border-color: rgba(241, 201, 148, 0.4);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.h-profile-avatar {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #f1c994, #c9963a);
+  color: #161c24;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.h-profile-name {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Tajawal', sans-serif;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #f1c994;
+}
+
+/* سهم القوائم المنسدلة (موحد لكل الاستخدامات) */
+.dropdown-arrow {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+  color: #ce9c56;
+}
+
+.dropdown-arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/* محتوى القائمة المنسدلة للمستخدم */
+.h-profile-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0; /* في RTL ستكون القائمة متجهة لليسار بشكل صحيح */
+  background: rgba(22, 28, 36, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(241, 201, 145, 0.15);
+  border-radius: 12px;
+  padding: 8px 0;
+  min-width: 220px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  z-index: 100;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.h-profile-dropdown-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.h-profile-dropdown-header span {
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.h-profile-dropdown-header small {
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+  direction: ltr;
+  text-align: right;
+}
+
+/* عناصر القائمة المنسدلة الموحدة (لوحة التح控制和 تسجيل الخروج) */
+.h-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 14px;
+  font-family: 'Tajawal', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.h-dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.h-dashboard-link {
+  color: #f1c991;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 15px;
+  margin-bottom: 5px;
+}
+
+.h-logout-btn {
+  color: #ff6b6b;
+}
+.h-logout-btn:hover {
+  background-color: rgba(255, 107, 107, 0.1);
+}
+
+/* ==========================================
+   9. زر الهامبرغر (مخفي على الديسكتوب)
+   ========================================== */
+.h-mobile-toggle {
+  display: none;
+  background: none;
+  border: 1.5px solid rgba(241, 201, 145, 0.3);
+  color: #f1c994;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 10px;
+  z-index: 1001;
+  transition: all 0.3s ease;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+}
+
+.h-mobile-toggle:hover {
+  background: rgba(241, 201, 145, 0.1);
+  border-color: rgba(241, 201, 145, 0.6);
+}
+
+.hamburger-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #f1c994;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.h-mobile-toggle.open .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.h-mobile-toggle.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.h-mobile-toggle.open .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ==========================================
+   10. القائمة الجانبية والخلفية المعتمة
+   ========================================== */
+.h-mobile-sidebar {
+  display: none;
+  position: fixed;
+  top: 3.5rem;
+  right: -110%;
+  width: 85%;
+  max-width: 350px;
+  height: calc(100vh - 3.5rem);
+  background: rgba(22, 28, 36, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: 998;
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  border-left: 1px solid rgba(241, 201, 145, 0.1);
+  padding: 20px 0;
+}
+
+.h-mobile-sidebar.open {
+  right: 0;
+}
+
+.h-mobile-overlay {
+  display: none;
+  position: fixed;
+  top: 3.5rem;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 3.5rem);
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 997;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.h-mobile-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==========================================
+   11. محتوى القائمة الجانبية (الموبايل)
+   ========================================== */
+.mobile-top-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 20px 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 20px;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Tajawal', sans-serif;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  color: #f1c994;
+  background: rgba(241, 201, 145, 0.05);
+}
+
+.mobile-accordion-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.mobile-accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 24px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Tajawal', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-accordion-header:hover,
+.mobile-accordion-header.open {
+  color: #f1c994;
+}
+
+.mobile-accordion-header.open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.mobile-accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.mobile-accordion-body.open {
+  max-height: 300px;
+}
+
+.mobile-accordion-body a {
+  display: block;
+  padding: 12px 36px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Tajawal', sans-serif;
+  transition: all 0.2s ease;
+}
+
+.mobile-accordion-body a:hover {
+  color: #ce9c56;
+}
+
+.mobile-auth-section {
+  padding: 24px;
+  margin-top: 16px;
+  border-top: 1px solid rgba(241, 201, 145, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-auth-section .h-login-text {
+  width: 100%;
+  text-align: center;
+  padding: 14px;
+  font-size: 16px;
+  border: 1px solid rgba(241, 201, 145, 0.3);
+  border-radius: 12px;
+  color: #f1c994;
+}
+
+.mobile-auth-section .h-subscribe-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 12px;
+}
+
+.h-mobile-logout {
+  width: 100%;
+  justify-content: center;
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+  border-radius: 8px;
+  margin-top: 10px;
+  padding: 14px;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==========================================
+   12. Responsive Design
+   ========================================== */
+@media (max-width: 900px) {
+  .h-mobile-toggle {
+    display: flex;
+  }
+
+  .h-mobile-sidebar {
+    display: block;
+  }
+
+  .h-mobile-overlay {
+    display: block;
+  }
+
+  /* إخفاء عناصر الديسكتوب */
+  .h-menu {
+    display: none !important;
+  }
+
+  .h-actions-wrapper {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .h-mobile-sidebar {
+    width: 90%;
+  }
+}
+
+/* شاشات متوسطة (آيباد و تابلت) */
+@media (min-width: 901px) and (max-width: 1150px) {
+  .h-menu {
+    gap: 1.5rem;
+  }
+
+  .h-menu a,
+  .nav-dropdown-btn {
+    font-size: 14px;
+  }
+
+  .h-actions-wrapper {
+    gap: 8px;
+  }
+
+  .h-subscribe-btn {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+
+  .h-profile-name {
+    display: none; /* إخفاء الاسم في الشاشات المتوسطة لضيق المساحة */
+  }
+
+  .nav-dropdown-content {
+    min-width: 200px;
+    padding: 6px 0;
+  }
+
+  .nav-dropdown-content a {
+    padding: 9px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1024px) {
+  .h-menu {
+    gap: 1rem;
+  }
+
+  .h-menu a,
+  .nav-dropdown-btn {
+    font-size: 13px;
+  }
+
+  .h-subscribe-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+    gap: 5px;
+  }
+  
+  .h-lang-btn span:not(.lang-icon) {
+    display: none; /* إبقاء أيقونة الكرة الأرضية فقط في الآيباد الصغير */
+  }
+}
+
+/* ==========================================
+   13. أجزاء إضافية (Skeleton & Error)
+   ========================================== */
+.properties-loading {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.skeleton-card {
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+
+.skeleton-line {
+  height: 14px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-line.w60 { width: 60%; }
+.skeleton-line.w80 { width: 80%; }
+.skeleton-line.w40 { width: 40%; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.properties-error {
+  text-align: center;
+  padding: 60px 20px;
+  color: #ff6b6b;
+}
+
+.properties-error button {
+  background: none;
+  border: none;
+  color: #f1c991;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.properties-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.properties-empty svg {
+  color: #444;
+}

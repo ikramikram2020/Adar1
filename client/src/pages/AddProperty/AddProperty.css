@@ -1,0 +1,837 @@
+/* ==========================================
+   صفحة إضافة عقار
+   ========================================== */
+/* === تأكد أن هذه الأسطر موجودة في أعلى الملف === */
+.add-prop-wrapper {
+  min-height: 100vh;
+  background: #0d1117;
+  padding-top: 3.5rem;
+  font-family: 'Tajawal', sans-serif;
+  direction: rtl;
+  color: #fff;
+}
+
+.add-prop-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 24px 100px;
+}
+
+/* الهيدر */
+.add-prop-header {
+  margin-bottom: 40px;
+}
+
+.add-prop-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 14px;
+  cursor: pointer;
+  font-family: 'Tajawal', sans-serif;
+  margin-bottom: 16px;
+}
+.add-prop-back:hover { color: #f1c991; }
+
+.add-prop-header h1 { font-size: 2rem; margin-bottom: 8px; }
+.add-prop-header p { color: rgba(255,255,255,0.5); }
+
+/* أشرطة التقدم */
+.add-prop-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 50px;
+  background: rgba(22, 28, 36, 0.5);
+  border-radius: 16px;
+  padding: 24px 20px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.prop-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.3);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.prop-step.active { color: #f1c991; }
+
+.step-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.prop-step.active .step-circle {
+  background: rgba(241, 201, 145, 0.15);
+  box-shadow: 0 0 20px rgba(241, 201, 145, 0.2);
+}
+
+.progress-line {
+  width: 80px;
+  height: 2px;
+  background: rgba(255,255,255,0.1);
+  margin: 0 12px;
+  margin-bottom: 30px;
+}
+
+/* النموذج */
+.add-prop-form {
+  background: rgba(22, 28, 36, 0.4);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 40px;
+}
+
+.form-step h2 { font-size: 1.5rem; margin-bottom: 24px; }
+.form-step .step-desc { color: rgba(255,255,255,0.4); margin-top: -16px; margin-bottom: 24px; font-size: 14px; }
+
+.form-group {
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: rgba(241, 201, 145, 0.4);
+  background: rgba(255,255,255,0.08);
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+/* زر البيع/الكراء */
+.toggle-group {
+  display: flex;
+  gap: 12px;
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: 14px;
+  border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.1);
+  background: transparent;
+  color: rgba(255,255,255,0.5);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Tajawal', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+  border-color: #f1c991;
+  background: rgba(241, 201, 145, 0.1);
+  color: #f1c991;
+}
+
+/* منطقة رفع الصور */
+.upload-area {
+  border: 2px dashed rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 60px 20px;
+  text-align: center;
+  color: rgba(255,255,255,0.4);
+  transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+  border-color: rgba(241, 201, 145, 0.3);
+  background: rgba(241, 201, 145, 0.03);
+}
+
+.upload-area h3 { color: #fff; margin: 16px 0 8px; font-size: 18px; }
+
+.upload-btn {
+  margin-top: 16px;
+  padding: 12px 32px;
+  background: rgba(241, 201, 145, 0.1);
+  border: 1px solid rgba(241, 201, 145, 0.2);
+  border-radius: 50px;
+  color: #f1c991;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Tajawal', sans-serif;
+  transition: all 0.3s ease;
+}
+.upload-btn:hover { background: #f1c991; color: #161c24; }
+
+/* أزرار التنقل */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.btn-primary, .btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Tajawal', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: #f1c991;
+  color: #161c24;
+  border: none;
+  margin-right: auto;
+}
+.btn-primary:hover { background: #e5b870; transform: translateY(-2px); }
+
+.btn-secondary {
+  background: transparent;
+  color: rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
+
+@media (max-width: 768px) {
+  .form-row { flex-direction: column; gap: 0; }
+  .add-prop-progress { flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .progress-line { display: none; }
+}
+
+/* ==========================================
+   تنسيقات خطوة التحقق من الهوية
+   ========================================== */
+
+.owner-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* مربع التنبيه الخاص بالخصوصية */
+.form-notice-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background: rgba(227, 192, 141, 0.05);
+  border: 1px solid rgba(227, 192, 141, 0.15);
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.form-notice-box p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* التجاوب للشاشات الصغيرة للحقول */
+@media (max-width: 768px) {
+  .owner-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ========== المتغيرات الأساسية ========== */
+:root {
+  --navy: rgba(255,255,255,0.1);
+  --navy-light: black;
+  --navy-mid: black;
+  --navy-soft: black;
+  --gold: #f1c991;
+  --gold-light: #F5D9AD;
+  --gold-pale: #FBF0DE;
+  --gold-dark: #D4A85C;
+  --gold-muted: rgba(241, 201, 145, 0.15);
+  --text-light: #CBD5E1;
+  --text-muted: #8899AA;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border:  rgba(255,255,255,0.1);
+  --input-bg: rgba(255,255,255,0);
+  --input-border: black;
+}
+
+/* ========== قسم المرافق ========== */
+.amenities-section {
+  margin-top: 2rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* خط ذهبي زخرفي علوي */
+.amenities-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+  border-radius: 16px 16px 0 0;
+}
+
+.amenities-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.amenities-header-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(241, 201, 145, 0.25);
+}
+
+.amenities-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin: 0 0 0.3rem 0;
+}
+
+.amenities-subtitle {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ========== شبكة المرافق ========== */
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.65rem;
+}
+
+.amenity-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  transition: all 0.25s ease;
+}
+
+.amenity-card:hover {
+  border-color: var(--gold-muted);
+  box-shadow: 0 2px 12px rgba(241, 201, 145, 0.08);
+  transform: translateY(-1px);
+}
+
+/* أيقونات المرافق بألوان مختلفة مع خلفية داكنة */
+.amenity-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.amenity-icon-red {
+  background: rgba(239, 68, 68, 0.12);
+  color: #F87171;
+}
+
+.amenity-icon-blue {
+  background: rgba(96, 165, 250, 0.12);
+  color: #60A5FA;
+}
+
+.amenity-icon-green {
+  background: rgba(52, 211, 153, 0.12);
+  color: #34D399;
+}
+
+.amenity-icon-gold {
+  background: var(--gold-muted);
+  color: var(--gold);
+}
+
+.amenity-icon-purple {
+  background: rgba(167, 139, 250, 0.12);
+  color: #A78BFA;
+}
+
+.amenity-icon-orange {
+  background: rgba(251, 146, 60, 0.12);
+  color: #FB923C;
+}
+
+.amenity-icon-emerald {
+  background: rgba(52, 211, 153, 0.12);
+  color: #6EE7B7;
+}
+
+.amenity-icon-slate {
+  background: rgba(148, 163, 184, 0.12);
+  color: #94A3B8;
+}
+
+.amenity-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.amenity-info label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 0.4rem;
+}
+
+.amenity-distance-wrapper {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.amenity-input {
+  flex: 1;
+  min-width: 0;
+  height: 36px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 0 0.6rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: #F1F5F9;
+  background: var(--navy);
+  transition: all 0.25s ease;
+}
+
+.amenity-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(241, 201, 145, 0.15);
+}
+
+.amenity-input::placeholder {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+/* إزالة أسهم الـ Number */
+.amenity-input::-webkit-inner-spin-button,
+.amenity-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.amenity-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.amenity-unit {
+  width: 65px;
+  height: 36px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 0 0.3rem;
+  font-size: 0.8rem;
+  font-family: inherit;
+  color: var(--gold);
+  background: var(--navy);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23f1c991' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 0.4rem center;
+  padding-left: 1.4rem;
+}
+
+.amenity-unit:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(241, 201, 145, 0.15);
+}
+
+.amenity-unit option {
+  background: var(--navy);
+  color: var(--text-light);
+}
+
+/* ========== ملاحظة ========== */
+.amenities-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+  padding: 0.75rem 1rem;
+  background: var(--gold-muted);
+  border: 1px solid rgba(241, 201, 145, 0.2);
+  border-radius: 10px;
+  color: var(--gold-light);
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+.amenities-note svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  stroke: var(--gold);
+}
+
+/* ========== معاينة الوصف ========== */
+.amenities-preview {
+  margin-top: 1rem;
+  border: 2px dashed var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  animation: previewSlideIn 0.35s ease;
+}
+
+@keyframes previewSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  background: var(--navy-light);
+  color: var(--gold);
+  font-size: 0.82rem;
+  font-weight: 600;
+  stroke: var(--gold);
+}
+
+.preview-content {
+  padding: 1rem;
+  background: var(--input-bg);
+}
+
+.preview-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0;
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.preview-item:last-child {
+  border-bottom: none;
+}
+
+.preview-icon {
+  font-size: 1.1rem;
+  width: 28px;
+  text-align: center;
+}
+
+.preview-item strong {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ========== التجاوب ========== */
+@media (max-width: 640px) {
+  .amenities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .amenities-section {
+    padding: 1rem;
+  }
+
+  .amenities-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+/* ========== حقل اسم المرفق ========== */
+.amenity-name-input {
+  width: 100%;
+  height: 34px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 0 0.6rem;
+  font-size: 0.82rem;
+  font-family: inherit;
+  color: #F1F5F9;
+  background: var(--navy);
+  transition: all 0.25s ease;
+  margin-bottom: 0.4rem;
+}
+
+.amenity-name-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(241, 201, 145, 0.12);
+}
+
+.amenity-name-input::placeholder {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+}
+/* ===================================
+   تنسيق احترافي لقسم المرافق
+   =================================== */
+
+.amenities-section {
+  margin-top: 40px;
+  padding: 25px;
+  background: linear-gradient(145deg, #1e293b, #172033);
+  border-radius: 16px;
+  border: 1px solid rgba(241, 201, 145, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.amenities-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.amenities-header-icon {
+  width: 45px;
+  height: 45px;
+  background: rgba(241, 201, 145, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f1c991;
+}
+
+.amenities-header h3 {
+  margin: 0;
+  color: #f1fafc;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.amenities-subtitle {
+  margin: 4px 0 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+/* شبكة البطاقات */
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* بطاقة المرفق الواحد */
+.amenity-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+.amenity-card:hover {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(241, 201, 145, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.amenity-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
+}
+
+.amenity-card:hover .amenity-icon {
+  transform: scale(1.1);
+}
+
+/* ألوان الأيقونات (خلفيات شفافة جداً) */
+.amenity-icon-red { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+.amenity-icon-blue { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+.amenity-icon-green { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
+.amenity-icon-gold { background: rgba(249, 115, 22, 0.15); color: #fb923c; }
+.amenity-icon-purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+.amenity-icon-orange { background: rgba(249, 115, 22, 0.15); color: #fb923c; }
+.amenity-icon-emerald { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+.amenity-icon-slate { background: rgba(100, 116, 139, 0.15); color: #94a3b8; }
+
+/* معلومات المرفق */
+.amenity-info label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 10px;
+}
+
+/* حقول الإدخال المتناسقة */
+.amenity-name-input {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.amenity-name-input:focus {
+  border-color: #f1c991;
+}
+
+.amenity-name-input::placeholder {
+  color: #475569;
+}
+
+/* صندوق المسافة المتكامل (المسافة + الوحدة بجانب بعض) */
+.amenity-distance-wrapper {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #334155;
+  background: #0f172a;
+  transition: border-color 0.2s;
+}
+
+.amenity-distance-wrapper:focus-within {
+  border-color: #f1c991;
+}
+
+.amenity-input {
+  flex: 1;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 13px;
+  outline: none;
+  font-family: inherit;
+  min-width: 0; /* لمنع تجاوز النص */
+}
+
+.amenity-input::placeholder {
+  color: #475569;
+}
+
+/* قائمة الوحدات المنسدلة */
+.amenity-unit {
+  padding: 8px 12px;
+  background: #1e293b;
+  border: none;
+  border-left: 1px solid #334155;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+}
+
+.amenity-unit option {
+  background: #1e293b;
+  color: #fff;
+}
+
+/* ملاحظة أسفل القسم */
+.amenities-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 10px 15px;
+  background: rgba(59, 130, 246, 0.05);
+  border-radius: 8px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+/* تجاوب مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .amenities-grid {
+    grid-template-columns: 1fr;
+  }
+}
